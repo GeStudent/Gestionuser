@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class Test {
         public static void main(String[] args) throws SQLException {
             ServicesUsers su =new ServicesUsers();
-             user u = new user("raghda","drissi","raghda.drissi@esprit.tn","student","1995-05-06",22901120,"Tunisia","bellvue","female");
+             user u = new user("hasen","ayadi","dd.dd@esprit.tn","student","1995-05-06",22901120,"Tunisia","bellvue","female");
             try {
               su.ajouter(u);
               // su.updateimage("171JMTB216","cssphoto");
