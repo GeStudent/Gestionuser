@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -31,9 +29,25 @@ public class ServicesUsers {
 
     }
 
+   public String getQRcode(String email) {
+        String Qrcode = "";
+        try {
+            PreparedStatement pre = con.prepareStatement("select idcode from user where email=?");
+            pre.setString(1, email);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                Qrcode = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return Qrcode;
+    }
+
     String idCode(user u) {
-        String code = "1928GE";
-        int value=0;
+        int random = (int) (Math.random() * (199 - 100 + 1) + 100);
+        String code = String.valueOf(random) + "GE";
+        int value = 0;
         if (u.getGender() == "male") {
             code = code + "M";
         } else {
@@ -43,12 +57,12 @@ public class ServicesUsers {
             ste = con.createStatement();
             ResultSet rs = ste.executeQuery("select NEXTVAL(seq_user);");
             while (rs.next()) {
-                 value = rs.getInt(1);
+                value = rs.getInt(1);
             }
         } catch (SQLException ex) {
             ex.getMessage();
         }
-        code=code+String.valueOf(value);
+        code = code + String.valueOf(value);
         return code;
     }
 
@@ -63,20 +77,15 @@ public class ServicesUsers {
         pre.setString(7, u.getPays());
         pre.setString(8, u.getAdress());
         pre.setString(9, u.getGender());
-        pre.setString(10,idCode(u));
+        pre.setString(10, idCode(u));
         pre.executeUpdate();
     }
 
-    public void ajouterAccount(user u) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("update user set username=?,image=?,email=?,password=?,roles=?,enabled=?,?,?,?,?,?);");
+    public void ajouterAccount(user u, String idcode) throws SQLException {
+        PreparedStatement pre = con.prepareStatement("update user set username=?,image=?,email=?,password=?,roles=?,enabled= where idcode);");
         pre.setString(1, u.getUsername());
         pre.setString(2, u.getImage());
-        pre.setString(3, u.getEmail());
         pre.setString(4, u.getPassword());
-        pre.setString(5, u.getRoles());
-        pre.setString(7, u.getPays());
-        pre.setString(8, u.getAdress());
-        pre.setString(9, u.getGender());
         pre.executeUpdate();
     }
 
