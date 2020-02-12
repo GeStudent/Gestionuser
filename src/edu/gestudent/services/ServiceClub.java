@@ -10,8 +10,10 @@ import edu.gestudent.entities.Club;
 import edu.gestudent.utils.DataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,10 +47,6 @@ public class ServiceClub implements IService<Club> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public List<Club> readAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     public boolean supprimer(Club c) throws SQLException {
 
         String reqeute = "delete  from Club  where (nom = ?) ";
@@ -68,6 +66,7 @@ public class ServiceClub implements IService<Club> {
         return false;
 //To change body of generated methods, choose Tools | Templates.
     }
+
     public boolean Update(int etat, String nom) throws SQLException {
 
         String requete = "UPDATE Club SET  etat= ? where nom = ? ;";
@@ -89,5 +88,40 @@ public class ServiceClub implements IService<Club> {
         }
         return false;
     }
-        
+
+    /**
+     *
+     * @return @throws SQLException
+     */
+    @Override
+    public List<Club> readAll() throws SQLException {
+        List<Club> arr = new ArrayList<>();
+        ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select * from Club");
+        while (rs.next()) {
+            //int id=rs.getInt(1);
+            int id_club = rs.getInt("id_club");
+            String nom = rs.getString("nom");
+
+            String date = rs.getString("date");
+            
+            String email = rs.getString("email");
+            
+            int numero = rs.getInt("numero");
+
+            String description = rs.getString("description");
+                                  
+            int etat = rs.getInt("etat");
+
+            int id_president = rs.getInt("id_president");
+
+
+          
+          Club c = new Club(id_club, nom, date, email, numero, description, etat, id_president);
+            arr.add(c);
+
+        }
+        return arr;
+    }
+
 }
