@@ -29,7 +29,7 @@ public class mainclassFares {
             emc.supprimeremprunt(e, 2);
         } catch (SQLException ex) {
         }
-        System.out.println(emc.getquantite(2));
+        System.out.println(emc.getquantite(23));
         
         
 
