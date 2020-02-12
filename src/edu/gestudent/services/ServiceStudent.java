@@ -27,7 +27,6 @@ public class ServiceStudent extends ServicesUsers {
         PreparedStatement pre;
         try {
             super.ajouter(s);
-            System.out.println("111");
             pre = con.prepareStatement("update user set roles='student' where idcode= ?");
             pre.setString(1, super.getQRcode(s.getEmail()));
             pre.executeUpdate();
@@ -35,7 +34,8 @@ public class ServiceStudent extends ServicesUsers {
         } catch (SQLException ex) {
             ex.getMessage();
         }
-
     }
+    
+    
 
 }

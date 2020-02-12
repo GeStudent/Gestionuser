@@ -24,9 +24,8 @@ public class mainclassYassine {
          ServiceStudent usr= new ServiceStudent();
          
          usr.ajouterStudent(s);
-         //666
        
-        
+         System.out.println("css ya dawela !!!!!");
          
      }
     
