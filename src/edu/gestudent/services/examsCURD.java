@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.gestudent.entities;
+package edu.gestudent.services;
 
 /**
  *
  * @author Asus
  */
-public class exams {
+public class examsCURD {
     
 }
