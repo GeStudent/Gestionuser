@@ -24,6 +24,8 @@ public class mainclassNader {
     public static void main(String[] args) {
         ServiceClub ser = new ServiceClub();
         ServiceEvenement ser1 = new ServiceEvenement();
+        
+        
 
         Club c1 = new Club(1, "evenjjhghj666666666jjjjjjjjt", "1996-04-26", "rotary@gmail.com", 1, "le club est magnifique", 1, 7);
 
@@ -34,6 +36,7 @@ public class mainclassNader {
             //  ser1.ajouter(e1);
             //ser.ajouter(c1);
             //ser1.supprimer(e1);
+            System.out.println(ser.readyByNom("evefrnt"));      
            // ser.supprimer(c1);
            // ser.Update(0, "evefrnt");
             System.out.println(ser.readAll());

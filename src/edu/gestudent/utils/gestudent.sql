@@ -57,6 +57,43 @@ CREATE TABLE IF NOT EXISTS `exams` (
   `duree` int(11) NOT NULL,
   PRIMARY KEY (`idexa`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+--structure de la classe Club
+DROP TABLE IF EXISTS `club`;
+CREATE TABLE IF NOT EXISTS `club` (
+  `id_club` int(30) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `numero` int(30) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `etat` int(10) NOT NULL,
+  `id_president` int(30) NOT NULL,
+  PRIMARY KEY (`id_club`),
+  UNIQUE KEY `nom` (`nom`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+
+
+
+
+--structure de la classe evenement
+DROP TABLE IF EXISTS `evenement`;
+CREATE TABLE IF NOT EXISTS `evenement` (
+  `id_event` int(30) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(30) NOT NULL,
+  `description` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `place` varchar(30) NOT NULL,
+  `id_club` int(30) NOT NULL,
+  PRIMARY KEY (`id_event`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
