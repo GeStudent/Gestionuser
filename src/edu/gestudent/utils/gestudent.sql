@@ -96,14 +96,11 @@ CREATE TABLE IF NOT EXISTS `evenement` (
 
 
 
-
--- Structure de la table `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE IF NOT EXISTS `roles` (
-  `Role` varchar(25) NOT NULL,
-  PRIMARY KEY (`Role`)
+--structure de la classe MembreClub
+DROP TABLE IF EXISTS `membreclub`;
+CREATE TABLE IF NOT EXISTS `membreclub` (
+  `id_club` int(30) NOT NULL,
+  `id_etudiant` int(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
