@@ -25,16 +25,18 @@ public class mainclassNader {
         ServiceClub ser = new ServiceClub();
         ServiceEvenement ser1 = new ServiceEvenement();
 
-        Club c1 = new Club(1, "event", "1996-04-26", "rotary@gmail.com", 1, "le club est magnifique", 1, 7);
-        Evenement e1 = new Evenement(2, "nhebek heeeeeedi", "le film est magnifique", "2020-02-26", "bloc e", 1);
+        Club c1 = new Club(1, "evenjjhghj666666666jjjjjjjjt", "1996-04-26", "rotary@gmail.com", 1, "le club est magnifique", 1, 7);
+
+        Evenement e1 = new Evenement(2, "nhebek heegfghjeeeedi", "le film est magnifique", "2020-02-26", "bloc e", 1);
 
         try {
 //         
-            //ser1.ajouter(e1);
-           // ser.ajouter(c1);
-            ser1.supprimer(e1);
-            //ser.supprimer(c1);
-            ser.Update(0,"evefrnt" );
+            //  ser1.ajouter(e1);
+            //ser.ajouter(c1);
+            //ser1.supprimer(e1);
+           // ser.supprimer(c1);
+           // ser.Update(0, "evefrnt");
+            System.out.println(ser.readAll());
             // List<Club> list = ser.readAll();
             //   System.out.println(list);
         } catch (SQLException ex) {
