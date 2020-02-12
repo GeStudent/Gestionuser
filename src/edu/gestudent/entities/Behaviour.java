@@ -24,6 +24,11 @@ public class Behaviour {
         this.award = award;
     }
 
+    public Behaviour(int attendance, int award) {
+        this.attendance = attendance;
+        this.award = award;
+    }
+
     public int getIdbeh() {
         return idbeh;
     }
