@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `exams` (
 
 
 
---structure de la classe Club
+-- structure de la classe Club
 DROP TABLE IF EXISTS `club`;
 CREATE TABLE IF NOT EXISTS `club` (
   `id_club` int(30) NOT NULL AUTO_INCREMENT,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `club` (
 
 
 
---structure de la classe evenement
+-- structure de la classe evenement
 DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `id_event` int(30) NOT NULL AUTO_INCREMENT,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `evenement` (
 
 
 
---structure de la classe MembreClub
+-- structure de la classe MembreClub
 DROP TABLE IF EXISTS `membreclub`;
 CREATE TABLE IF NOT EXISTS `membreclub` (
   `id_club` int(30) NOT NULL,
@@ -112,6 +112,7 @@ INSERT INTO `roles` (`Role`) VALUES
 ('parent'),
 ('student'),
 ('teacher');
+
 
 -- --------------------------------------------------------
 
@@ -174,6 +175,47 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `idcode` (`idcode`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+
+--
+-- Structure de la table `emprunt`
+--
+
+DROP TABLE IF EXISTS `emprunt`;
+CREATE TABLE IF NOT EXISTS `emprunt` (
+  `id_emprunt` int(11) NOT NULL AUTO_INCREMENT,
+  `date_emprunt` date NOT NULL,
+  `date_retour` date NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_livre` int(11) NOT NULL,
+  PRIMARY KEY (`id_emprunt`),
+  KEY `fk_idL` (`id_livre`),
+  KEY `fk_idU` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+
+--
+-- Structure de la table `livres`
+--
+
+DROP TABLE IF EXISTS `livres`;
+CREATE TABLE IF NOT EXISTS `livres` (
+  `id_livre` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `image` varchar(30) NOT NULL,
+  `author` varchar(30) NOT NULL,
+  `url` varchar(30) NOT NULL,
+  `categorie` varchar(30) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  PRIMARY KEY (`id_livre`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `livres`
+--
+
+INSERT INTO `livres` (`id_livre`, `name`, `image`, `author`, `url`, `categorie`, `quantite`) VALUES
+(2, 'jouha', '/image', 'pipo', '/url', 'comic', 25);
 
 COMMIT;
 
