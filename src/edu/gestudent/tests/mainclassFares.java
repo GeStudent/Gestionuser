@@ -19,7 +19,7 @@ public class mainclassFares {
 
     public static void main(String[] args) {
         LivreCrud lcr = new LivreCrud();
-        Livre l = new Livre("yassine", "/image", "jhon jacke roseau", "/http:", "biographique", 12);
+        Livre l = new Livre("yassisne", "/image", "jhon jacke roseau", "/http:", "biographique", 12);
         // lcr.ajouterLivre(l);
         // System.out.println(lcr.afficherlivre());
         EmpruntCrud emc = new EmpruntCrud();
