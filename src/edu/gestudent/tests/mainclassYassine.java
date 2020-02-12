@@ -25,7 +25,7 @@ public class mainclassYassine {
          
          usr.ajouterStudent(s);
        
-         System.out.println("css ya dawela !!!!!");
+        
          
      }
     
