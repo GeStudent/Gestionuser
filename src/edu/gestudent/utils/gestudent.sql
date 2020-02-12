@@ -94,6 +94,17 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   PRIMARY KEY (`id_event`)
 ) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
+
+
+--structure de la classe MembreClub
+DROP TABLE IF EXISTS `membreclub`;
+CREATE TABLE IF NOT EXISTS `membreclub` (
+  `id_club` int(30) NOT NULL,
+  `id_etudiant` int(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
