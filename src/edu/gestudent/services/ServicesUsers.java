@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,15 +23,15 @@ import java.util.List;
  */
 public class ServicesUsers {
 
-    private Connection con;
-    private Statement ste;
+    protected Connection con;
+    protected Statement ste;
 
     public ServicesUsers() {
         con = DataBase.getInstance().getConnection();
 
     }
 
-   public String getQRcode(String email) {
+    public String getQRcode(String email) {
         String Qrcode = "";
         try {
             PreparedStatement pre = con.prepareStatement("select idcode from user where email=?");
@@ -66,19 +68,25 @@ public class ServicesUsers {
         return code;
     }
 
-    public void ajouter(user u) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("INSERT INTO user (firstname,lastname,email,roles,birthDay,phone,pays,adress,gender,idCode)VALUES (?,?,?,?,?,?,?,?,?,?);");
-        pre.setString(1, u.getFirstname());
-        pre.setString(2, u.getLastname());
-        pre.setString(3, u.getEmail());
-        pre.setString(4, u.getRoles());
-        pre.setString(5, u.getBirthDay());
-        pre.setInt(6, u.getPhone());
-        pre.setString(7, u.getPays());
-        pre.setString(8, u.getAdress());
-        pre.setString(9, u.getGender());
-        pre.setString(10, idCode(u));
-        pre.executeUpdate();
+    public void ajouter(user u) {
+
+        try {
+            PreparedStatement pre = con.prepareStatement("INSERT INTO user (firstname,lastname,email,birthDay,phone,pays,adress,gender,idCode)VALUES (?,?,?,?,?,?,?,?,?);");
+            pre.setString(1, u.getFirstname());
+            System.out.println(idCode(u));
+            pre.setString(2, u.getLastname());
+            pre.setString(3, u.getEmail());
+            pre.setString(4, u.getBirthDay());
+            pre.setInt(5, u.getPhone());
+            pre.setString(6, u.getPays());
+            pre.setString(7, u.getAdress());
+            pre.setString(8, u.getGender());
+            pre.setString(9, idCode(u));
+
+            pre.executeUpdate();
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
     }
 
     public void ajouterAccount(user u, String idcode) throws SQLException {
@@ -107,6 +115,7 @@ public class ServicesUsers {
         PreparedStatement pre = con.prepareStatement("update user set image =? where idcode=? ;");
         pre.setString(1, image);
         pre.setString(2, idcode);
+
         if (pre.executeUpdate() != 0) {
             System.out.println("user's image is up to date");
             return true;

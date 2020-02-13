@@ -27,6 +27,13 @@ public class exams {
         this.duree = duree;
     }
 
+    public exams(String nomex, Date dateex, int duree) {
+        this.nomex = nomex;
+        this.dateex = dateex;
+        this.duree = duree;
+    }
+    
+
     public int getIdexa() {
         return idexa;
     }

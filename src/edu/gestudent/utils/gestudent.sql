@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `exams` (
 
 
 
---structure de la classe Club
+-- structure de la classe Club
 DROP TABLE IF EXISTS `club`;
 CREATE TABLE IF NOT EXISTS `club` (
   `id_club` int(30) NOT NULL AUTO_INCREMENT,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `club` (
 
 
 
---structure de la classe evenement
+-- structure de la classe evenement
 DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `id_event` int(30) NOT NULL AUTO_INCREMENT,
@@ -96,14 +96,126 @@ CREATE TABLE IF NOT EXISTS `evenement` (
 
 
 
---structure de la classe MembreClub
+-- structure de la classe MembreClub
 DROP TABLE IF EXISTS `membreclub`;
 CREATE TABLE IF NOT EXISTS `membreclub` (
   `id_club` int(30) NOT NULL,
   `id_etudiant` int(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `roles`
+--
 
+INSERT INTO `roles` (`Role`) VALUES
+('adminstrator'),
+('parent'),
+('student'),
+('teacher');
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `seq_user`
+--
+
+DROP TABLE IF EXISTS `seq_user`;
+CREATE TABLE IF NOT EXISTS `seq_user` (
+  `next_not_cached_value` bigint(21) NOT NULL,
+  `minimum_value` bigint(21) NOT NULL,
+  `maximum_value` bigint(21) NOT NULL,
+  `start_value` bigint(21) NOT NULL COMMENT 'start value when sequences is created or value if RESTART is used',
+  `increment` bigint(21) NOT NULL COMMENT 'increment value',
+  `cache_size` bigint(21) UNSIGNED NOT NULL,
+  `cycle_option` tinyint(1) UNSIGNED NOT NULL COMMENT '0 if no cycles are allowed, 1 if the sequence should begin a new cycle when maximum_value is passed',
+  `cycle_count` bigint(21) NOT NULL COMMENT 'How many cycles have been done'
+) ENGINE=MyISAM;
+
+--
+-- Déchargement des données de la table `seq_user`
+--
+
+INSERT INTO `seq_user` (`next_not_cached_value`, `minimum_value`, `maximum_value`, `start_value`, `increment`, `cache_size`, `cycle_option`, `cycle_count`) VALUES
+(4234, 1, 9223372036854775806, 1234, 3, 1000, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(180) DEFAULT NULL,
+  `username_canonical` varchar(180) DEFAULT NULL,
+  `lastname` varchar(180) DEFAULT NULL,
+  `firstname` varchar(180) DEFAULT NULL,
+  `image` varchar(180) DEFAULT NULL,
+  `email` varchar(180) DEFAULT NULL,
+  `email_canonical` varchar(180) DEFAULT NULL,
+  `enabled` tinyint(1) DEFAULT 0,
+  `salt` varchar(180) DEFAULT NULL,
+  `password` varchar(180) DEFAULT NULL,
+  `last_login` date DEFAULT NULL,
+  `confirmation_token` varchar(180) DEFAULT NULL,
+  `password_requested_at` date DEFAULT NULL,
+  `roles` longtext DEFAULT NULL,
+  `birthDay` date DEFAULT NULL,
+  `phone` int(8) DEFAULT NULL,
+  `pays` varchar(180) DEFAULT NULL,
+  `adress` varchar(180) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `iclass` int(50) DEFAULT NULL,
+  `idcode` varchar(180) DEFAULT NULL,
+  `salary` double DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `idcode` (`idcode`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+
+--
+-- Structure de la table `emprunt`
+--
+
+DROP TABLE IF EXISTS `emprunt`;
+CREATE TABLE IF NOT EXISTS `emprunt` (
+  `id_emprunt` int(11) NOT NULL AUTO_INCREMENT,
+  `date_emprunt` date NOT NULL,
+  `date_retour` date NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_livre` int(11) NOT NULL,
+  PRIMARY KEY (`id_emprunt`),
+  KEY `fk_idL` (`id_livre`),
+  KEY `fk_idU` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+
+--
+-- Structure de la table `livres`
+--
+
+DROP TABLE IF EXISTS `livres`;
+CREATE TABLE IF NOT EXISTS `livres` (
+  `id_livre` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `image` varchar(30) NOT NULL,
+  `author` varchar(30) NOT NULL,
+  `url` varchar(30) NOT NULL,
+  `categorie` varchar(30) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  PRIMARY KEY (`id_livre`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `livres`
+--
+
+INSERT INTO `livres` (`id_livre`, `name`, `image`, `author`, `url`, `categorie`, `quantite`) VALUES
+(2, 'jouha', '/image', 'pipo', '/url', 'comic', 25);
 
 COMMIT;
 

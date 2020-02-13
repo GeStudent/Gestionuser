@@ -9,6 +9,7 @@ import edu.gestudent.entities.Behaviour;
 import edu.gestudent.entities.exams;
 import edu.gestudent.utils.DataBase;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,13 +37,46 @@ public class examsCRUD {
             pst.setString(1, e.getNomex());
             pst.setDate(2, e.getDateex());
             pst.setInt(3, e.getDuree());
-            
+              pst.executeUpdate();
         } catch (SQLException ex) {
           System.out.println(ex.getMessage());
         }
            
     }
-    
+      public boolean updateex(int idexa, Date dateex) throws SQLException {
+
+        try {
+            PreparedStatement pre = con.prepareStatement("update exams set dateex =? where idexa=? ;");
+            pre.setDate(1, dateex);
+              pre.setInt(2, idexa);
+            if (pre.executeUpdate() != 0) {
+                System.out.println("exam date is updated");
+                return true;
+            }
+             } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+            System.out.println("id exam not found!!!");
+            return false;
+       
+
+    }
+      public boolean delete(int idexa) throws SQLException {
+
+        PreparedStatement pre = con.prepareStatement("Delete from exams where idexa=? ;");
+try{
+        pre.setInt(1, idexa);
+        if (pre.executeUpdate() != 0) {
+            System.out.println("exam Deleted");
+            return true;
+        }
+         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("id exam not found!!!");
+        return false;
+
+    }
      public List<exams> afficherex(){
         ArrayList<exams> per =new ArrayList();
 

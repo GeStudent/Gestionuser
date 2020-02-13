@@ -12,26 +12,38 @@ import java.sql.Date;
  * @author Ayadi
  */
 public class user {
-	 String username;
-	 String lastname; 
-	 String firstname;
-         String image;
-	 String email;
-         String	password ;
-         String confirmation_token;
-         String roles ;
-         String birthDay ;
-	 int phone ;
-	 String pays ;
-	 String adress ;
-         String gender;
-         String idclass;
+
+    protected String username;
+    protected String lastname;
+    protected String firstname;
+    protected String image;
+    protected String email;
+    protected String password;
+    protected String confirmation_token;
+    protected String roles;
+    protected String birthDay;
+    protected int phone;
+    protected String pays;
+    protected String adress;
+    String gender;
+    String idclass;
 
     public user(String lastname, String firstname, String email, String roles, String birthDay, int phone, String pays, String adress, String gender) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.email = email;
         this.roles = roles;
+        this.birthDay = birthDay;
+        this.phone = phone;
+        this.pays = pays;
+        this.adress = adress;
+        this.gender = gender;
+    }
+
+    public user(String lastname, String firstname, String email, String birthDay, int phone, String pays, String adress, String gender) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.email = email;
         this.birthDay = birthDay;
         this.phone = phone;
         this.pays = pays;
@@ -152,7 +164,7 @@ public class user {
 
     @Override
     public String toString() {
-        return "user{" + "username=" + username + ", lastname=" + lastname + ", firstname=" + firstname + ", image=" + image + ", email=" + email + ", password=" + password + ", confirmation_token=" + confirmation_token + ", roles=" + roles + ", birthDay=" + birthDay + ", phone=" + phone + ", pays=" + pays + ", adress=" + adress + ", gender=" + gender + ", idclass=" + idclass + '}';
+        return "user{" + "username=" + username + ", lastname=" + lastname + ", firstname=" + firstname + ", image=" + image + ", email=" + email + ", password=" + password + ", confirmation_token=" + confirmation_token + ", roles=" + roles + ", birthDay=" + birthDay + ", phone=" + phone + ", pays=" + pays + ", adress=" + adress + ", gender=" + gender + ", idclass=" + '}';
     }
-    
+
 }
