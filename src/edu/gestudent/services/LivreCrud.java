@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +25,23 @@ public class LivreCrud {
 
     Connection cn2;
     Statement st;
+    String tri = " ORDER BY name " ;
+    String ordre = " DESC" ;
+    public void ordrecroiss () {
+        ordre = " ASC" ; 
+    }
+     public void ordredecroiss () {
+        ordre = " DESC" ; 
+    }
+    
+    public void triByName() { 
+        tri = " ORDER BY author ";
+        }
+    public void triByAuthor() { 
+        tri = " ORDER BY author ";
+        }
 
+    
     public LivreCrud() {
         cn2 = DataBase.getInstance().getConnection();
     }
@@ -52,7 +70,7 @@ public class LivreCrud {
     public List<Livre> afficherlivre() {
         ArrayList<Livre> liv = new ArrayList<>();
         try {
-            String requete3 = "SELECT *FROM livres";
+            String requete3 = ("SELECT *FROM livres"+ tri + ordre) ;
             PreparedStatement pst2 = cn2.prepareStatement(requete3);
             ResultSet rs = pst2.executeQuery();
             while(rs.next()){
@@ -112,8 +130,27 @@ public class LivreCrud {
         }
         return false;
     }
-    public void trierlistelivre()
+    public List<Livre> rechrecherlivre(String Name)
     {
-      
+        try {
+            List<Livre> liv=new ArrayList<>();
+            PreparedStatement pre=cn2.prepareStatement("Select * from livres  WHERE name=? " + tri + ordre);
+            pre.setString(1, Name );
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                String name=rs.getString("name");
+                String image=rs.getString("image");
+                String author=rs.getString("author");
+                String url=rs.getString("url");
+                String categorie=rs.getString("categorie");
+                int quantite=rs.getInt("quantite");
+                Livre l=new Livre (name,image,author,url,categorie,quantite);
+                liv.add(l);
+            }
+            return liv;
+        } catch (SQLException ex) {
+            Logger.getLogger(LivreCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
