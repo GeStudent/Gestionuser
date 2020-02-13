@@ -68,9 +68,9 @@ public class EmpruntCrud {
         return false;
     }
 
-    public boolean Update(String date_emprunt) throws SQLException {
+    public boolean UpdateE(int id_emprunt,String date_emprunt) throws SQLException {
 
-        String reqeute = "UPDATE livres SET  image= ?  where id_emprunt = ? ;";
+        String reqeute = "UPDATE emprunt SET  date_emprunt= ?  where id_emprunt = ? ;";
         try {
             PreparedStatement pst = cn2.prepareStatement(reqeute);
 

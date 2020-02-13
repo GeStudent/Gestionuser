@@ -33,7 +33,8 @@ public class mainclassFares {
             //lcr.ajouterLivre(l3);
             //System.out.println(lcr.afficherlivre());
             //System.out.println(lcr.rechrecherlivre("da vinci code"));
-            lcr.Update("al ayem", "/image", "/http", "categorie", 14);
+            //lcr.Update("al ayem", "/image", "/http", "categorie", 14);
+            //lcr.supprimerlivre(l2);
             
             
             
@@ -41,7 +42,11 @@ public class mainclassFares {
             //Emprunt e1 = new Emprunt("2020-04-04", "2021-12-25", 1, 2);
             //Emprunt e2 = new Emprunt("2020-02-01", "2021-01-20", 1, 2);
             //Emprunt e3 = new Emprunt("2020-12-12", "2021-03-19", 1, 2);
-            
+            //emc.ajouterEmprunt(e1);
+            //emc.ajouterEmprunt(e2);
+            //emc.ajouterEmprunt(e3);
+            //System.out.println(lcr.afficherEmprunt());
+            //lcr.supprimeremprunt(l2);
             
             
         } catch (SQLException ex) {

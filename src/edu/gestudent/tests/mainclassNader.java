@@ -37,7 +37,7 @@ public class mainclassNader {
         Evenement e1 = new Evenement(2, "nhebek heegfghjeeeedi", "le film est magnifique", "2020-02-26", "bloc e", 1);
 
         try {
-               ser.triByDate();
+              ser.triByDate();
 //System.out.println(ser.rechercher("evefrnt"));
             // ser1.ajouter(e1);
             // ser2.ajouter(mc1);
