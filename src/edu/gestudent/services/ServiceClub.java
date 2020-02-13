@@ -7,6 +7,7 @@ package edu.gestudent.services;
 
 import edu.gestudent.IService.IService;
 import edu.gestudent.entities.Club;
+import edu.gestudent.entities.Evenement;
 import edu.gestudent.utils.DataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,48 +105,71 @@ public class ServiceClub implements IService<Club> {
             String nom = rs.getString("nom");
 
             String date = rs.getString("date");
-            
+
             String email = rs.getString("email");
-            
+
             int numero = rs.getInt("numero");
 
             String description = rs.getString("description");
-                                  
+
             int etat = rs.getInt("etat");
 
             int id_president = rs.getInt("id_president");
 
-
-          
-          Club c = new Club(id_club, nom, date, email, numero, description, etat, id_president);
+            Club c = new Club(id_club, nom, date, email, numero, description, etat, id_president);
             arr.add(c);
 
         }
         return arr;
     }
 
-     public List<Club> readyByNom(String nom1) throws SQLException {
-    List<Club> arr=new ArrayList<>();
-   // ste=con.createStatement();
-   // ResultSet rs=ste.executeQuery("select * from evenement");
-    PreparedStatement pre=con.prepareStatement("Select * from Club  WHERE nom=? ");
-    pre.setString(1, nom1 );
-    ResultSet rs = pre.executeQuery();
-     while (rs.next()) {   
+    public List<Club> rechercher(String nom1) throws SQLException {
+        List<Club> arr = new ArrayList<>();
+        // ste=con.createStatement();
+        // ResultSet rs=ste.executeQuery("select * from evenement");
+        PreparedStatement pre = con.prepareStatement("Select * from Club  WHERE nom=? ");
+        pre.setString(1, nom1);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
 
-               //int id=rs.getInt(1);
-               int id_club=rs.getInt("id_club");
-               String nom=rs.getString("nom");
-               String date=rs.getString("date");
-               String email=rs.getString("email");
-               int numero=rs.getInt("numero");
-               String description =rs.getString("description");
-               int etat =rs.getInt("etat");
-               int id_president =rs.getInt("id_president");
-              
-               Club c=new Club ( id_club,  nom,  date,  email,  numero,  description,  etat,  id_president);
-     arr.add(c);
-     }
-    return arr;
+            //int id=rs.getInt(1);
+            int id_club = rs.getInt("id_club");
+            String nom = rs.getString("nom");
+            String date = rs.getString("date");
+            String email = rs.getString("email");
+            int numero = rs.getInt("numero");
+            String description = rs.getString("description");
+            int etat = rs.getInt("etat");
+            int id_president = rs.getInt("id_president");
+
+            Club c = new Club(id_club, nom, date, email, numero, description, etat, id_president);
+            arr.add(c);
+        }
+        return arr;
     }
-}
+
+    /*String tri = " ORDER BY nbreplace " ;
+    String ordre = " ASC" ;
+    public void ordreASC () {
+        ordre = " ASC" ; 
+    }
+     public void ordreDESC () {
+        ordre = " DESC" ; 
+    }
+    
+    public void triByPrix() { 
+        tri = " ORDER BY prix ";
+        }
+    public void triByNbPlace() { 
+        tri = " ORDER BY nbreplace ";
+        }
+    public void triByDateDebut() { 
+        tri = " ORDER BY dateD ";
+        }*/
+    public void triByDate() {
+        String tri = " ORDER BY date ";
+    }
+
+
+
+    }
